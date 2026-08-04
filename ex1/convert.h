@@ -1,33 +1,16 @@
-#include "convert.h"
-#include <string.h>
+#ifndef CONVERT_H
+#define CONVERT_H
 
-void ascii_to_bin(char ascii, char *bin_str) {
-        for (int i = 7; i >= 0; i--) {
-                bin_str[7 - i] = (ascii & (1 << i)) ? '1' : '0';
-        }
-        bin_str[8] = '\0';
-}
+/* 1. Converts an ASCII char to an 8-bit binary string (e.g., 'A' -> "01000001") */
+void ascii_to_bin(char ascii, char *bin_str);
 
-char bin_to_ascii(const char *bin_str) {
-        char ascii = 0;
-        for (int i = 0; i < 8; i++) {
-                if (bin_str[i] == '1') {
-                        ascii |= (1 << (7 - i));
-                }
-        }
-        return ascii;
-}
+/* 2. Converts an 8-bit binary string back to an ASCII char (e.g., "01000001" -> 'A') */
+char bin_to_ascii(const char *bin_str);
 
-void str_to_ascii(const char *str, int *ascii_arr, int *len) {
-        *len = strlen(str);
-        for (int i = 0; i < *len; i++) {
-                ascii_arr[i] = (int)str[i];
-        }
-}
+/* 3. Converts a full string to an array of ASCII numbers (e.g., "Hi" -> {72, 105}) */
+void str_to_ascii(const char *str, int *ascii_arr, int *len);
 
-void ascii_to_str(const int *ascii_arr, int len, char *str) {
-        for (int i = 0; i < len; i++) {
-                str[i] = (char)ascii_arr[i];
-        }
-        str[len] = '\0';
-}
+/* 4. Converts an array of ASCII numbers back to a string (e.g., {72, 105} -> "Hi") */
+void ascii_to_str(const int *ascii_arr, int len, char *str);
+
+#endif
